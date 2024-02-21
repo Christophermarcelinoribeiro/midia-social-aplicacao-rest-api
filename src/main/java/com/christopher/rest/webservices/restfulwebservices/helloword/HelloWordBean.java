@@ -18,7 +18,7 @@ public class HelloWordBean {
 
 	@Override
 	public String toString() {
-		return "HelloWordBean [message=" + message + "]" + "\n";
+		return "HelloWordBean [message=" + message + "]";
 	}
 
 }
