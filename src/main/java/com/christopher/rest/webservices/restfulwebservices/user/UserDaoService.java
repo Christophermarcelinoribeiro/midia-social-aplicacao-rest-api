@@ -40,14 +40,18 @@ public class UserDaoService {
 			}
 		}
 		throw new UserNotFoundException("id" +id );
-		
-		
-		
 	}
 /*	public User findOne(int id) {
 		Predicate<? super User> predicate = user -> user.getId().equals(id);
 		return users.stream().filter(predicate).findFirst().get();
 	}
 */
-		
+	public void deleteById(int id) throws Exception {
+		for(User u: users) {
+			if(u.getId().equals(id)) {
+				users.remove(u);
+			}
+		}
+		throw new UserNotFoundException("id" +id );
+	}
 }
