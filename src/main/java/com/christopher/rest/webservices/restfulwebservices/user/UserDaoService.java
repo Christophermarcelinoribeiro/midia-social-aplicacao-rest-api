@@ -46,12 +46,18 @@ public class UserDaoService {
 		return users.stream().filter(predicate).findFirst().get();
 	}
 */
-	public void deleteById(int id) throws Exception {
+	public void deleteById(int id){
 		for(User u: users) {
 			if(u.getId().equals(id)) {
 				users.remove(u);
 			}
 		}
-		throw new UserNotFoundException("id" +id );
+		
 	}
+	
+/*	public void deleteByIdTeste(int id) {
+		Predicate<? super User> predicate = user -> user.getId().equals(id);
+		users.removeIf(predicate);
+	}
+*/	
 }
