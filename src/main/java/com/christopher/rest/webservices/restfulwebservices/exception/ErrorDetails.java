@@ -6,9 +6,9 @@ public class ErrorDetails {
 	private Instant timestamp;
 	private String message;
 	private String details;
-	
+
 	public ErrorDetails() {
-		
+
 	}
 
 	public ErrorDetails(Instant timestamp, String message, String details) {
@@ -28,6 +28,6 @@ public class ErrorDetails {
 
 	public String getDetails() {
 		return details;
-	} 
- 
+	}
+
 }
