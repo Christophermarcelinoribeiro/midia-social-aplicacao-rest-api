@@ -6,7 +6,10 @@ insert into tb_user(id,birth_date,name)
 values(12,current_date(), 'Fernando');
 
 insert into post(id,description,user_id)
-values(14,'I wnat to learn aws',12);
+values(14,'I want to learn aws',12);
+
+insert into post(id,description,user_id)
+values(17,'I will be a Dev',12);
 
 insert into post(id,description,user_id)
 values(15,'I wnat to learn Devops',10);
