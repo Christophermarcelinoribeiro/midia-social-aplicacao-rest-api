@@ -9,6 +9,8 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
+import com.christopher.rest.webservices.restfulwebservices.jpa.UserRepository;
+
 
 
 
@@ -39,7 +41,7 @@ public class UserDaoService {
 				return u;
 			}
 		}
-		throw new UserNotFoundException("id" +id );
+		throw new UserNotFoundException("id:" +id);
 	}
 /*	public User findOne(int id) {
 		Predicate<? super User> predicate = user -> user.getId().equals(id);
