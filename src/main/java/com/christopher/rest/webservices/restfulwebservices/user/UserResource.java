@@ -26,7 +26,7 @@ public class UserResource {
 		this.service = service;
 	}
 
-	@GetMapping("/users/")
+	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {
 		return service.findAll();
 	}
