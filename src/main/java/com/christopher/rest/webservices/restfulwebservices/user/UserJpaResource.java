@@ -19,17 +19,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.christopher.rest.webservices.restfulwebservices.jpa.PostRepository;
 import com.christopher.rest.webservices.restfulwebservices.jpa.UserRepository;
 
 import jakarta.validation.Valid;
 
 @RestController
 public class UserJpaResource {
-	private UserDaoService service;
+	
 	private UserRepository repository; 
+	private PostRepository postReposiotry;
 
-	public UserJpaResource(UserRepository repository) {
+	public UserJpaResource(UserRepository repository, PostRepository postReposiotry) {
 		this.repository = repository;
+		this.postReposiotry = postReposiotry;
 	}
 
 	@GetMapping("/jpa/users")
@@ -68,6 +71,18 @@ public class UserJpaResource {
 		// mostra o local onde foi criado o usuario. Ex: http://localhost:8080/users/6
 		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
 				.buildAndExpand(savedUser.getId()).toUri();
+		return ResponseEntity.created(location).build();
+	}
+	@PostMapping("/jpa/users/{id}/posts")
+	public ResponseEntity<Post> createPostsForUser(@PathVariable int id,@Valid @RequestBody Post post)  {
+		Optional<User> user = repository.findById(id);
+		if(user.isEmpty())
+			throw new UserNotFoundException("id:"+id);
+		post.setUser(user.get());
+		
+		postReposiotry.save(post);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+				.buildAndExpand(postReposiotry.save(post).getId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 
